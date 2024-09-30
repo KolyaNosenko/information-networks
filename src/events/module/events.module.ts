@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
 import { EventsService } from '../services';
 import { EventsController } from '../ui';
-import { OrmEventsStorage } from '../infrastructure';
+import { PrismaEventsStorage } from '../infrastructure';
 import { EventsStorage } from '../interfaces';
 
 @Module({
   controllers: [EventsController],
   providers: [
-    OrmEventsStorage,
+    PrismaEventsStorage,
     {
       provide: EventsService,
-      inject: [OrmEventsStorage],
+      inject: [PrismaEventsStorage],
       useFactory: (eventsStorage: EventsStorage) => {
         return new EventsService(eventsStorage);
       },

@@ -1,5 +1,5 @@
 type EventProperties = {
-  title: string;
+  name: string;
   description: string;
   createAt: Date;
 };
@@ -7,8 +7,8 @@ type EventProperties = {
 export class EventEntity {
   constructor(private readonly properties: EventProperties) {}
 
-  getTitle() {
-    return this.properties.title;
+  getName() {
+    return this.properties.name;
   }
 
   getDescription() {

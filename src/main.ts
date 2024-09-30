@@ -2,6 +2,7 @@ import * as env from 'dotenv';
 import * as handlebars from 'hbs';
 import * as handlebarsUtils from 'hbs-utils';
 import { join } from 'path';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
@@ -27,6 +28,8 @@ async function bootstrap() {
   handlebarsUtils(handlebars).registerWatchedPartials(
     join(__dirname, '..', 'views/components'),
   );
+
+  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(process.env.PORT);
 }

@@ -1,1 +1,1 @@
-export * from './orm.events.storage';
+export * from './prisma.events.storage';
