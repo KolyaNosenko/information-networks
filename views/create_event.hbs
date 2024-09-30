@@ -4,16 +4,16 @@
         <section class="py-5">
             <div class="container">
                 <div class="col">
-                    <form>
+                    <form method="POST" action="/events/create">
                         <h3 class="h2 mb-3">Create Event</h3>
                         <div class="mb-3">
-                            <label for="eventTitle" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="eventTitle"
-                                   aria-describedby="eventTitle">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title"
+                                   aria-describedby="title">
                         </div>
                         <div class="mb-3">
-                            <label for="eventDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="eventDescription" rows="3"></textarea>
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="3" name="description"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
