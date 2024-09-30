@@ -21,6 +21,12 @@ async function bootstrap() {
   handlebarsUtils(handlebars).registerWatchedPartials(
     join(__dirname, '..', 'views/layout'),
   );
+  handlebarsUtils(handlebars).registerPartials(
+    join(__dirname, '..', 'views/components'),
+  );
+  handlebarsUtils(handlebars).registerWatchedPartials(
+    join(__dirname, '..', 'views/components'),
+  );
 
   await app.listen(process.env.PORT);
 }

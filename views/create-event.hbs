@@ -1,0 +1,25 @@
+{{#> app}}
+    {{#*inline "content"}}
+        {{#> header}}{{/header}}
+        <section class="py-5">
+            <div class="container">
+                <div class="col">
+                    <form>
+                        <h3 class="h2 mb-3">Create Event</h3>
+                        <div class="mb-3">
+                            <label for="eventTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="eventTitle"
+                                   aria-describedby="eventTitle">
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="eventDescription" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        {{#> footer}}{{/footer}}
+    {{/inline}}
+{{/app}}
