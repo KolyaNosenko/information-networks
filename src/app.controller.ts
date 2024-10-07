@@ -1,10 +1,10 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Res } from '@nestjs/common';
+import { Response } from 'express';
 
 @Controller()
 export class AppController {
   @Get()
-  @Render('home.hbs')
-  root() {
-    return { message: 'Home page' };
+  root(@Res() response: Response) {
+    return response.redirect('/events');
   }
 }
