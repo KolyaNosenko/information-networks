@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { UserController } from '../ui';
 import { UserService, UserStorage } from '../services';
 import { PrismaUserStorage } from '../infrastructure';
+import { RolesGuard } from '../infrastructure/guards';
 
 @Module({
   controllers: [UserController],
@@ -14,7 +15,8 @@ import { PrismaUserStorage } from '../infrastructure';
         return new UserService(userStorage);
       },
     },
+    RolesGuard,
   ],
-  exports: [UserService],
+  exports: [RolesGuard, UserService],
 })
 export class UserModule {}

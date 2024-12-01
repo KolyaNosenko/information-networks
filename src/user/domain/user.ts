@@ -1,7 +1,10 @@
+import { UserRole } from './user-role';
+
 type UserProperties = {
   id: string;
   accountId: string;
   name: string;
+  roles: Array<UserRole>;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -27,5 +30,13 @@ export class User {
 
   getUpdateAt() {
     return this.properties.updatedAt;
+  }
+
+  getRoles() {
+    return this.properties.roles;
+  }
+
+  getRoleNames() {
+    return this.getRoles().map((role) => role.getName());
   }
 }

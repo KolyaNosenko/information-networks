@@ -32,7 +32,7 @@ export class AuthService {
       params.email,
     );
 
-    if (!existAccount) throw new InvalidAccountCredentials();
+    if (existAccount) throw new InvalidAccountCredentials();
 
     const hashedPassword = await argon.hash(params.password);
 
@@ -50,6 +50,7 @@ export class AuthService {
       name: params.name,
       createdAt: new Date(),
       updatedAt: new Date(),
+      roles: [],
     });
 
     await this.accountStorage.createAccount(account);

@@ -5,12 +5,15 @@ import {
   PublicGuard,
 } from '../../../auth/infrastructure';
 import { Reflector } from '@nestjs/core';
+import { ROLES_METADATA_KEY, RolesGuard } from '../../../user/infrastructure';
+import { UserRoleName } from '../../../user/domain';
 
 @Injectable()
 export class AppGuard implements CanActivate {
   constructor(
     private readonly reflector: Reflector,
     private readonly authorizedGuard: AuthorizedGuard,
+    private readonly rolesGuard: RolesGuard,
     private readonly publicGuard: PublicGuard,
   ) {}
 
@@ -24,6 +27,19 @@ export class AppGuard implements CanActivate {
       return this.publicGuard.canActivate();
     }
 
-    return this.authorizedGuard.canActivate(context);
+    const isAuthorized = await this.authorizedGuard.canActivate(context);
+
+    if (!isAuthorized) return false;
+
+    const requiredRoles = this.reflector.getAllAndOverride<UserRoleName[]>(
+      ROLES_METADATA_KEY,
+      [context.getHandler(), context.getClass()],
+    );
+
+    if (requiredRoles.length) {
+      return this.rolesGuard.canActivate(context);
+    }
+
+    return true;
   }
 }

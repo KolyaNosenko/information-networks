@@ -3,7 +3,6 @@ import { LoginHandler, SignUpHandler, LogoutHandler } from '../../operation';
 import { SignInDtoMapper } from './dto-mapper';
 import { SignInDto, SignUpDto } from './dto';
 import { SignUpToMapper } from './dto-mapper';
-import { SuccessResponse } from '../../../common/ui/entities';
 import { Login, Public } from '../../infrastructure';
 
 @Controller('auth')

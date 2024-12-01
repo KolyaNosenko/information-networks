@@ -1,6 +1,7 @@
 import * as env from 'dotenv';
 import * as handlebars from 'hbs';
 import * as handlebarsUtils from 'hbs-utils';
+import * as cookieParser from 'cookie-parser';
 import { join } from 'path';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -27,6 +28,8 @@ async function bootstrap() {
   handlebarsUtils(handlebars).registerWatchedPartials(
     join(__dirname, '..', 'views/components'),
   );
+
+  app.use(cookieParser());
 
   await app.listen(process.env.PORT);
 }

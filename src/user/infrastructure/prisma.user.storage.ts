@@ -10,6 +10,7 @@ export class PrismaUserStorage implements UserStorage {
 
   async createUser(user: User): Promise<User> {
     const dbMapper = new UserDbMapper();
+    const roles = user.getRoles().map((role) => ({ id: role.getId() }));
 
     const userFromDb = await this.db.user.create({
       data: {
@@ -18,7 +19,9 @@ export class PrismaUserStorage implements UserStorage {
         createdAt: user.getCreateAt(),
         updatedAt: user.getUpdateAt(),
         account: { connect: { id: user.getAccountId() } },
+        roles: { connect: roles },
       },
+      include: { roles: true },
     });
 
     return dbMapper.toEntity(userFromDb);
@@ -27,7 +30,10 @@ export class PrismaUserStorage implements UserStorage {
   async getUserByAccountId(accountId: string): Promise<User | null> {
     const dbMapper = new UserDbMapper();
 
-    const userFromDb = await this.db.user.findUnique({ where: { accountId } });
+    const userFromDb = await this.db.user.findUnique({
+      where: { accountId },
+      include: { roles: true },
+    });
 
     return userFromDb ? dbMapper.toEntity(userFromDb) : null;
   }
