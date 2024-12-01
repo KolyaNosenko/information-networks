@@ -1,4 +1,4 @@
-import { ToEntity } from '../../../common/ui/dto-mappers';
+import { ToEntity } from '../../../common/database/db-mappers';
 import { CreateEventParams } from '../../entities';
 import { CreateEventDto } from '../dto';
 
