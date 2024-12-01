@@ -1,5 +1,5 @@
 import { ToEntity } from '../../../common/database/db-mappers';
-import { Event as PrismaEvent } from '@prisma/client';
+import { Event as PrismaEvent } from '../../../../prisma/prisma';
 import { EventEntity } from '../../entities';
 
 export class EventDbMapper implements ToEntity<EventEntity, PrismaEvent> {

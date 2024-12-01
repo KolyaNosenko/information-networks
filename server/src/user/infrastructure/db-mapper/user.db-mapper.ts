@@ -1,4 +1,4 @@
-import Prisma from '@prisma/client';
+import Prisma from '../../../../prisma/prisma';
 import { ToEntity } from '../../../common/database/db-mappers';
 import { User, UserRole, UserRoleName } from '../../domain';
 

@@ -1,6 +1,6 @@
 import { ToEntity } from '../../../common/database/db-mappers';
 import { Account } from '../../domain';
-import { Account as AccountFromDb } from '@prisma/client';
+import { Account as AccountFromDb } from '../../../../prisma/prisma';
 
 export class AccountDbMapper implements ToEntity<Account, AccountFromDb> {
   toEntity(db: AccountFromDb): Account {
