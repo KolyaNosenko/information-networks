@@ -1,0 +1,26 @@
+html,
+body {
+  position: static !important;
+  -ms-scroll-chaining: none;
+  overscroll-behavior: contain;
+  height: 100%;
+}
+
+body {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+#root {
+  height: 100%;
+  max-width: initial !important;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  flex-grow: 1;
+}
