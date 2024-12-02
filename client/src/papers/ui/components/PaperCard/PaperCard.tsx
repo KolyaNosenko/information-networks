@@ -6,27 +6,24 @@ import {
   Typography,
 } from '@mui/material';
 
+import { Paper } from '../../../entities';
+
 export type PaperCardProps = {
   className?: string;
-};
+} & Paper;
 
-const PaperCard = ({ className }: PaperCardProps) => {
+const PaperCard = ({ className, name, author, coverUrl }: PaperCardProps) => {
   return (
     <Card className={className} variant="outlined">
       <CardContent>
         <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-          Word of the Day
+          {name}
         </Typography>
         <Typography variant="h5" component="div">
           Text
         </Typography>
-        <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />a benevolent smile
-        </Typography>
+        <img src={coverUrl} width={80} height={120} alt={name} />
+        <Typography variant="body2">{author}</Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Learn More</Button>

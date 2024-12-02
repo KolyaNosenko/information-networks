@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { PaperCard } from '../../../components';
+import { PaperCard, PaperCardLoader } from '../../../components';
 
 export const Root = styled.div``;
 
@@ -22,3 +22,5 @@ export const ListItem = styled.li`
 `;
 
 export const Card = styled(PaperCard)``;
+
+export const CardLoader = styled(PaperCardLoader)``;

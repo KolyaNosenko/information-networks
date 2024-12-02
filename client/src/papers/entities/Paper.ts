@@ -1,5 +1,6 @@
 export type Paper = {
   id: string;
   name: string;
-  title: string;
+  coverUrl: string;
+  author: string;
 };

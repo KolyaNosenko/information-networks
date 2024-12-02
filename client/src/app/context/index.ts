@@ -1,2 +1,3 @@
-export { default as ServicesProvider } from './ServicesContext';
-export * from './ServicesContext';
+export { default as ServicesProvider } from './Services';
+export * from './Services';
+export { default as StoreProvider } from './Store';
