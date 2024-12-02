@@ -3,7 +3,7 @@ import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AppController } from '../ui';
 import { HealthModule } from '../../health/module';
 import { ConfigModule } from '../../common/config/module';
-import { EventsModule } from '../../events/module';
+import { PapersModule } from '../../papers/module';
 import { DatabaseModule } from '../../common/database/module';
 import { UserModule } from '../../user/module';
 import { AppGuard } from '../infrastructure';
@@ -16,7 +16,7 @@ import { AuthModule } from '../../auth/module';
     DatabaseModule,
     AuthModule,
     UserModule,
-    EventsModule,
+    PapersModule,
   ],
   providers: [
     {

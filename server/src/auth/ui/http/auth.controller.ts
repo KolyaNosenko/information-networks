@@ -5,7 +5,7 @@ import { SignInDto, SignUpDto } from './dto';
 import { SignUpToMapper } from './dto-mapper';
 import { Login, Public } from '../../infrastructure';
 
-@Controller('auth')
+@Controller('api/v1/auth')
 export class AuthController {
   constructor(
     private loginHandler: LoginHandler,
