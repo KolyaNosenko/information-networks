@@ -2,7 +2,7 @@ import { Paper } from '../entities';
 import { PapersStorage } from '../services/interfaces';
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../common/database/services';
-import { PaperDbMapper } from './dto-mappers';
+import { PaperDbMapper } from './db-mappers';
 
 @Injectable()
 export class PrismaPapersStorage implements PapersStorage {
@@ -30,5 +30,13 @@ export class PrismaPapersStorage implements PapersStorage {
         // categories: [],
       },
     });
+  }
+
+  async getPaperById(id: string): Promise<Paper| null> {
+    const dbMapper = new PaperDbMapper();
+
+    const paperFromDb = await this.db.paper.findUnique({ where: { id } });
+
+    return paperFromDb ? dbMapper.toEntity(paperFromDb) : null;
   }
 }

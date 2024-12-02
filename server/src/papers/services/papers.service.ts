@@ -22,4 +22,8 @@ export class PapersService {
 
     return this.papersStorage.addPaper(paper);
   }
+
+  getPaperById(id: string) {
+    return this.papersStorage.getPaperById(id);
+  }
 }

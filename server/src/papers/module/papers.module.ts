@@ -24,5 +24,6 @@ import {
       },
     },
   ],
+  exports: [PapersService],
 })
 export class PapersModule {}

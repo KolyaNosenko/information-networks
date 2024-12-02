@@ -8,6 +8,7 @@ import { DatabaseModule } from '../../common/database/module';
 import { UserModule } from '../../user/module';
 import { AppGuard } from '../infrastructure';
 import { AuthModule } from '../../auth/module';
+import { LibraryModule } from '../../library/module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AuthModule } from '../../auth/module';
     AuthModule,
     UserModule,
     PapersModule,
+    LibraryModule,
   ],
   providers: [
     {
