@@ -11,4 +11,8 @@ export class UserService {
   async getUserByAccountId(accountId: string): Promise<User | null> {
     return this.userStorage.getUserByAccountId(accountId);
   }
+
+  async getUsers(): Promise<User[]> {
+    return this.userStorage.getUsers();
+  }
 }

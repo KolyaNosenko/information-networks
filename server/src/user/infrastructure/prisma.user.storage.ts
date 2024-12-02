@@ -37,4 +37,14 @@ export class PrismaUserStorage implements UserStorage {
 
     return userFromDb ? dbMapper.toEntity(userFromDb) : null;
   }
+
+  async getUsers(): Promise<User[]> {
+    const dbMapper = new UserDbMapper();
+
+    const usersFromDb = await this.db.user.findMany({
+      include: { roles: true },
+    });
+
+    return usersFromDb.map(dbMapper.toEntity);
+  }
 }

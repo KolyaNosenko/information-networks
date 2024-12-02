@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { UserController } from '../ui';
+import { UserAdminController, UserController } from '../ui';
 import { UserService, UserStorage } from '../services';
-import { PrismaUserStorage } from '../infrastructure';
-import { RolesGuard } from '../infrastructure/guards';
+import { PrismaUserStorage, RolesGuard } from '../infrastructure';
+import { GetUsersHandler } from '../operation';
 
 @Module({
-  controllers: [UserController],
+  controllers: [UserAdminController, UserController],
   providers: [
     PrismaUserStorage,
     {
@@ -13,6 +13,13 @@ import { RolesGuard } from '../infrastructure/guards';
       inject: [PrismaUserStorage],
       useFactory: (userStorage: UserStorage) => {
         return new UserService(userStorage);
+      },
+    },
+    {
+      provide: GetUsersHandler,
+      inject: [UserService],
+      useFactory: (userService: UserService) => {
+        return new GetUsersHandler(userService);
       },
     },
     RolesGuard,

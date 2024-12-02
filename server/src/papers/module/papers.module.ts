@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { PapersService } from '../services';
-import { PapersController } from '../ui';
+import { PapersAdminController, PapersController } from '../ui';
 import { PrismaPapersStorage } from '../infrastructure';
 import { PapersStorage } from '../services/interfaces';
 import {
@@ -8,9 +8,10 @@ import {
   CreateEventView,
   CreateEventSuccessView,
 } from '../ui/views';
+import { AddPaperHandler, UpdatePaperHandler } from '../operation';
 
 @Module({
-  controllers: [PapersController],
+  controllers: [PapersController, PapersAdminController],
   providers: [
     PrismaPapersStorage,
     EventsView,
@@ -21,6 +22,20 @@ import {
       inject: [PrismaPapersStorage],
       useFactory: (papersStorage: PapersStorage) => {
         return new PapersService(papersStorage);
+      },
+    },
+    {
+      provide: AddPaperHandler,
+      inject: [PapersService],
+      useFactory: (paperService: PapersService) => {
+        return new AddPaperHandler(paperService);
+      },
+    },
+    {
+      provide: UpdatePaperHandler,
+      inject: [PapersService],
+      useFactory: (papersService: PapersService) => {
+        return new UpdatePaperHandler(papersService);
       },
     },
   ],

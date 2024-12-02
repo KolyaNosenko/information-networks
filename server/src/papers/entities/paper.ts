@@ -19,16 +19,36 @@ export class Paper {
     return this.properties.name;
   }
 
+  setName(name: string) {
+    this.properties.name = name;
+    return this;
+  }
+
   getDescription() {
     return this.properties.description;
+  }
+
+  setDescription(description: string) {
+    this.properties.description = description;
+    return this;
   }
 
   getAuthor() {
     return this.properties.author;
   }
 
+  setAuthor(author: string) {
+    this.properties.author = author;
+    return this;
+  }
+
   getCoverUrl() {
     return this.properties.coverUrl;
+  }
+
+  setCoverUrl(coverUrl: string) {
+    this.properties.coverUrl = coverUrl;
+    return this;
   }
 
   getCreatedAt() {
@@ -37,5 +57,10 @@ export class Paper {
 
   getUpdatedAt() {
     return this.properties.updatedAt;
+  }
+
+  setUpdatedAt(date: Date) {
+    this.properties.updatedAt = date;
+    return this;
   }
 }

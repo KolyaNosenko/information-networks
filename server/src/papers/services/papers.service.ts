@@ -1,5 +1,10 @@
 import { PapersStorage } from './interfaces';
-import { AddPaperParams, Paper } from '../entities';
+import {
+  AddPaperParams,
+  Paper,
+  PaperNotFoundError,
+  UpdatePaperParams,
+} from '../entities';
 import { generateUuid } from '../../common/utils/string';
 
 export class PapersService {
@@ -21,6 +26,32 @@ export class PapersService {
     });
 
     return this.papersStorage.addPaper(paper);
+  }
+
+  async updatePaper(params: UpdatePaperParams) {
+    const paper = await this.papersStorage.getPaperById(params.paperId);
+
+    if (!paper) throw new PaperNotFoundError();
+
+    if (params.name) {
+      paper.setName(params.name);
+    }
+
+    if (params.coverUrl) {
+      paper.setCoverUrl(params.coverUrl);
+    }
+
+    if (params.author) {
+      paper.setAuthor(params.author);
+    }
+
+    if (params.description) {
+      paper.setDescription(params.description);
+    }
+
+    paper.setUpdatedAt(new Date());
+
+    return this.papersStorage.updatePaper(paper);
   }
 
   getPaperById(id: string) {

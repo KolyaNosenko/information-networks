@@ -16,8 +16,10 @@ export class PrismaPapersStorage implements PapersStorage {
     return papers.map(dbMapper.toEntity);
   }
 
-  async addPaper(paper: Paper): Promise<void> {
-    await this.db.paper.create({
+  async addPaper(paper: Paper): Promise<Paper> {
+    const dbMapper = new PaperDbMapper();
+
+    const paperFromDb = await this.db.paper.create({
       data: {
         id: paper.getId(),
         name: paper.getName(),
@@ -30,9 +32,30 @@ export class PrismaPapersStorage implements PapersStorage {
         // categories: [],
       },
     });
+
+    return dbMapper.toEntity(paperFromDb);
   }
 
-  async getPaperById(id: string): Promise<Paper| null> {
+  async updatePaper(paper: Paper): Promise<Paper> {
+    const dbMapper = new PaperDbMapper();
+
+    const paperFromDb = await this.db.paper.update({
+      where: { id: paper.getId() },
+      data: {
+        name: paper.getName(),
+        coverUrl: paper.getCoverUrl(),
+        author: paper.getAuthor(),
+        updatedAt: paper.getUpdatedAt(),
+        description: paper.getDescription(),
+        // TODO add
+        // categories: [],
+      },
+    });
+
+    return paperFromDb ? dbMapper.toEntity(paperFromDb) : null;
+  }
+
+  async getPaperById(id: string): Promise<Paper | null> {
     const dbMapper = new PaperDbMapper();
 
     const paperFromDb = await this.db.paper.findUnique({ where: { id } });
