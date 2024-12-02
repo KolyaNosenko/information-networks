@@ -2,15 +2,23 @@ import { Button } from '@mui/material';
 import { useFormik } from 'formik';
 
 import { Root, Form, Title, InputField } from './styled';
+import { useSignUp } from '../../../hooks';
 
 const SignUp = () => {
+  const { signUp } = useSignUp();
+
   const { handleSubmit, getFieldProps } = useFormik<{
+    name: string;
     email: string;
     password: string;
   }>({
-    initialValues: { email: '', password: '' },
+    initialValues: { name: '', email: '', password: '' },
     onSubmit: async (values) => {
-      console.log('values', values);
+      signUp({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
     },
   });
 
@@ -18,6 +26,12 @@ const SignUp = () => {
     <Root>
       <Title variant="h1">Sign up</Title>
       <Form onSubmit={handleSubmit}>
+        <InputField
+          id="name"
+          {...getFieldProps('name')}
+          label="Name"
+          name="name"
+        />
         <InputField
           id="email"
           {...getFieldProps('email')}

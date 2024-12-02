@@ -6,20 +6,23 @@ import { useState } from 'react';
 
 import { AuthService } from '../../../auth/services';
 import { AxiosHttpClient } from '../../../common/http-client';
+import { LibraryService } from '../../../library/services';
 import { PaperService } from '../../../papers/services';
-import { Services } from '../../context';
+import { config, Services } from '../../context';
 import { AppStore, createStore } from '../../store';
 import AppRoutes from '../AppRoutes';
 
 const initServices = (): Services => {
-  const httpClient = new AxiosHttpClient('some/url');
+  const httpClient = new AxiosHttpClient(config.apiUrl);
 
   const authService = new AuthService(httpClient);
   const paperService = new PaperService(httpClient);
+  const libraryService = new LibraryService(httpClient);
 
   return {
     authService,
     paperService,
+    libraryService,
   };
 };
 

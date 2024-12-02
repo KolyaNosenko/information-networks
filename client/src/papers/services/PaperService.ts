@@ -7,7 +7,7 @@ export class PaperService extends BaseService {
       {
         id: '1',
         name: 'Clean Code: A Handbook of Agile Software Craftsmanship',
-        title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
+        description: 'Clean Code: A Handbook of Agile Software Craftsmanship',
         author: 'Robert C. Martin',
         coverUrl:
           'https://balka-book.com/files/2023/12_25/11_03/u_files_store_5_6.jpg',
@@ -15,7 +15,7 @@ export class PaperService extends BaseService {
       {
         id: '2',
         name: "Clean Architecture: A Craftsman's Guide to Software Structure and Design",
-        title:
+        description:
           "Clean Architecture: A Craftsman's Guide to Software Structure and Design",
         author: 'Robert C. Martin',
         coverUrl:

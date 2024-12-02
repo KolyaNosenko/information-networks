@@ -1,16 +1,19 @@
-import { Button, Link } from '@mui/material';
+import { Link } from '@mui/material';
 import { useFormik } from 'formik';
 
 import { Root, Form, Title, InputField, Submit } from './styled';
+import { useLogin } from '../../../hooks';
 
 const Login = () => {
+  const { login } = useLogin();
+
   const { handleSubmit, getFieldProps } = useFormik<{
     email: string;
     password: string;
   }>({
     initialValues: { email: '', password: '' },
     onSubmit: async (values) => {
-      console.log('values', values);
+      login({ email: values.email, password: values.password });
     },
   });
 

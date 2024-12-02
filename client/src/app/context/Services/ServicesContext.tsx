@@ -1,11 +1,13 @@
 import { createContext, ReactNode } from 'react';
 
 import { AuthService } from '../../../auth/services';
+import { LibraryService } from '../../../library/services';
 import { PaperService } from '../../../papers/services';
 
 export type Services = {
   authService: AuthService;
   paperService: PaperService;
+  libraryService: LibraryService;
 };
 
 export const ServicesContext = createContext<Services>(undefined!);
