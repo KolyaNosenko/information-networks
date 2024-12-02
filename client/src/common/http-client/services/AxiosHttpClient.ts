@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
+import { ApiError } from '../../errors';
 import { stringifyQueryParams } from '../../utils/query.ts';
 import { HttpRequestConfig, HttpClient } from '../interfaces';
 
@@ -78,17 +79,15 @@ export class AxiosHttpClient implements HttpClient {
       });
       return result;
     } catch (err: any) {
-      throw err;
-      // TODO add custom error
-      // const originalError =
-      //   err.response && err.response.data
-      //     ? err.response.data.error
-      //     : { message: err.message };
-      //
-      // throw new ApiError({
-      //   originalError,
-      //   originalStatusCode: err.response ? err.response.status : 400,
-      // });
+      const originalError =
+        err.response && err.response.data
+          ? err.response.data.error
+          : { message: err.message };
+
+      throw new ApiError({
+        originalError,
+        originalStatusCode: err.response ? err.response.status : 400,
+      });
     }
   }
 }

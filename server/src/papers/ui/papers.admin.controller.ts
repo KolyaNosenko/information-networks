@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post, Put } from '@nestjs/common';
 import { AddPaperHandler, UpdatePaperHandler } from '../operation';
 import {
   AddPaperDtoMapper,
@@ -28,7 +28,7 @@ export class PapersAdminController {
     return new SuccessResponse(dtoMapper.toDto(paper));
   }
 
-  @Patch(':paperId')
+  @Put(':paperId')
   async updatePaper(
     @Param('paperId') paperId: string,
     @Body() dto: UpdatePaperDto,

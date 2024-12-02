@@ -2,9 +2,10 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { Services } from '../context';
 import { createRootReducer } from './reducer.ts';
+import { unauthorizedListener } from '../../auth/store/middlewares';
 
 export const createStore = ({ services }: { services: Services }) => {
-  const rootReducer = createRootReducer();
+  const rootReducer = createRootReducer({ services });
 
   return configureStore({
     reducer: rootReducer,
@@ -13,7 +14,7 @@ export const createStore = ({ services }: { services: Services }) => {
         thunk: {
           extraArgument: { services },
         },
-      }),
+      }).concat(unauthorizedListener(services.authService)),
   });
 };
 

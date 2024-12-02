@@ -6,6 +6,6 @@ export type LibraryEntryDto = {
   paper: PaperDto;
   progress: number;
   is_read: boolean;
-  createdAt: number;
-  updatedAt: number;
+  created_at: number;
+  updated_at: number;
 };

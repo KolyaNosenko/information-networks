@@ -5,9 +5,15 @@ export type PapersListProps = {
   papers: Paper[];
   isLoaded: boolean;
   className?: string;
+  onAddToLibrary: (paperId: string) => void;
 };
 
-const PapersList = ({ className, papers, isLoaded }: PapersListProps) => {
+const PapersList = ({
+  papers,
+  isLoaded,
+  className,
+  onAddToLibrary,
+}: PapersListProps) => {
   if (!isLoaded) {
     const loaderItems = new Array(10).fill(0);
 
@@ -29,7 +35,7 @@ const PapersList = ({ className, papers, isLoaded }: PapersListProps) => {
       <List>
         {papers.map((paper) => (
           <ListItem key={paper.id}>
-            <Card {...paper} />
+            <Card {...paper} onAddToLibrary={() => onAddToLibrary(paper.id)} />
           </ListItem>
         ))}
       </List>

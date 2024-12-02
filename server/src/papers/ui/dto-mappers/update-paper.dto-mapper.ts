@@ -10,7 +10,7 @@ export class UpdatePaperDtoMapper
       paperId: db.paperId,
       name: db.name,
       description: db.description,
-      coverUrl: db.coverUrl,
+      coverUrl: db.cover_url,
       author: db.author,
     };
   }

@@ -10,9 +10,16 @@ import { Paper } from '../../../entities';
 
 export type PaperCardProps = {
   className?: string;
+  onAddToLibrary: () => void;
 } & Paper;
 
-const PaperCard = ({ className, name, author, coverUrl }: PaperCardProps) => {
+const PaperCard = ({
+  name,
+  author,
+  coverUrl,
+  className,
+  onAddToLibrary,
+}: PaperCardProps) => {
   return (
     <Card className={className} variant="outlined">
       <CardContent>
@@ -26,7 +33,9 @@ const PaperCard = ({ className, name, author, coverUrl }: PaperCardProps) => {
         <Typography variant="body2">{author}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" onClick={onAddToLibrary}>
+          Add to library
+        </Button>
       </CardActions>
     </Card>
   );

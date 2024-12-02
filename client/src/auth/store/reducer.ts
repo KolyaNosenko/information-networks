@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { login, signUp } from './actions.ts';
+import { login, signUp, unauthorized } from './actions.ts';
 import { authInitialState, AuthState } from './state.ts';
 import { LoadingStatuses } from '../../common/entities';
 
@@ -30,6 +30,8 @@ export const createAuthReducer = (data: Partial<AuthState> = {}) => {
       })
       .addCase(signUp.rejected, (state) => {
         state.signUpLoadingStatus = LoadingStatuses.FAILED;
-      });
+      })
+
+      .addCase(unauthorized, () => ({ ...authInitialState }));
   });
 };

@@ -1,7 +1,13 @@
+import { createAction } from '@reduxjs/toolkit';
+
 import { createAsyncThunk } from '../../app/store/actions.ts';
 import { LoginParams, SignUpParams } from '../entities';
 
 export const authActionsAlias = 'auth';
+
+export const unauthorized = createAction<{ reason: unknown }>(
+  `${authActionsAlias}/UNAUTHORIZED`,
+);
 
 export const login = createAsyncThunk<void, LoginParams>(
   `${authActionsAlias}/LOGIN`,

@@ -15,8 +15,8 @@ export class LibraryEntryDtoMapper
       paper: paperDtoMapper.toDto.call(this, entity.getPaper()),
       progress: entity.getProgress(),
       is_read: entity.getIsRead(),
-      createdAt: entity.getCreateAt().getTime(),
-      updatedAt: entity.getUpdateAt().getTime(),
+      created_at: entity.getCreateAt().getTime(),
+      updated_at: entity.getUpdateAt().getTime(),
     };
   }
 }

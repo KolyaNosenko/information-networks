@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
+  Put,
 } from '@nestjs/common';
 import {
   AddLibraryEntryHandler,
@@ -56,7 +56,7 @@ export class LibraryController {
     return new SuccessResponse(dtoMapper.toDto(userLibrary));
   }
 
-  @Patch(':entryId')
+  @Put(':entryId')
   async updateLibraryEntry(
     @CurrentUser() user: User,
     @Param('entryId') entryId: string,

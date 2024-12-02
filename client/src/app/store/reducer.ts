@@ -3,11 +3,13 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { createAuthReducer } from '../../auth/store/reducer.ts';
 import { libraryReducer } from '../../library/store/reducer.ts';
 import { papersReducer } from '../../papers/store/reducer';
+import { Services } from '../context';
 
-export const createRootReducer = () => {
+export const createRootReducer = ({ services }: { services: Services }) => {
+  const { authService } = services;
+
   return combineReducers({
-    // TODO pass dynamic
-    auth: createAuthReducer({ isAuthorized: false }),
+    auth: createAuthReducer({ isAuthorized: authService.isAuthorized }),
     papers: papersReducer,
     library: libraryReducer,
   });

@@ -36,7 +36,7 @@ export class AppGuard implements CanActivate {
       [context.getHandler(), context.getClass()],
     );
 
-    if (requiredRoles.length) {
+    if (requiredRoles && requiredRoles.length) {
       return this.rolesGuard.canActivate(context);
     }
 

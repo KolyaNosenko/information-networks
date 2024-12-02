@@ -11,7 +11,7 @@ export class UpdatePaperDto {
 
   @IsString()
   @IsOptional()
-  coverUrl?: string;
+  cover_url?: string;
 
   @IsString()
   @IsOptional()

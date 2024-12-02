@@ -1,5 +1,12 @@
+import LibraryEntryList from './LibraryEntryList';
+import { Root } from './styled.tsx';
+
 export const Library = () => {
-  return <div>Hii</div>;
+  return (
+    <Root>
+      <LibraryEntryList />
+    </Root>
+  );
 };
 
 export default Library;
