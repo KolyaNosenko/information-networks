@@ -1,17 +1,36 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { Slider, Typography } from '@mui/material';
 
-import LibraryEntryCardMore from './LibraryEntryCardMore';
 import {
   Actions,
+  Author,
   Content,
   Cover,
   CoverWrapper,
+  Info,
+  MoreAction,
   Name,
+  ReadingProgress,
+  ReadingProgressBar,
+  ReadingProgressTitle,
   Root,
 } from './styled.tsx';
 import { LibraryEntry } from '../../../entities';
+
+const marks = [
+  { value: 0, label: '0%' },
+  { value: 10, label: '10%' },
+  { value: 20, label: '20%' },
+  { value: 30, label: '30%' },
+  { value: 40, label: '40%' },
+  { value: 50, label: '50%' },
+  { value: 60, label: '60%' },
+  { value: 70, label: '70%' },
+  { value: 80, label: '80%' },
+  { value: 90, label: '90%' },
+  { value: 100, label: '100%' },
+];
 
 export type LibraryEntryProps = {
   className?: string;
@@ -28,13 +47,6 @@ const LibraryEntryCard = ({
   onMarkAsRead,
   onRemove,
 }: LibraryEntryProps) => {
-  const [marks] = useState([
-    { value: 0, label: '0%' },
-    { value: 20, label: '20%' },
-    { value: 35, label: '35%' },
-    { value: 100, label: '100%' },
-  ]);
-
   const normalizedProgress = useMemo(() => {
     return progress * 100;
   }, [progress]);
@@ -52,14 +64,21 @@ const LibraryEntryCard = ({
     <Root className={className} variant="outlined">
       <Content>
         <CoverWrapper>
-          <Cover src={paper.coverUrl} alt={paper.name} width={45} height={70} />
+          <Cover
+            src={paper.coverUrl}
+            alt={paper.name}
+            width={100}
+            height={145}
+          />
         </CoverWrapper>
-        <div>
+        <Info>
           <Name variant="h3">{paper.name}</Name>
-          <Typography variant="h5">{paper.author}</Typography>
-          <div>
-            <h6>Progress:</h6>
-            <Slider
+          <Author variant="h5">By {paper.author}</Author>
+          <ReadingProgress>
+            <ReadingProgressTitle variant="h6">
+              Reading progress:
+            </ReadingProgressTitle>
+            <ReadingProgressBar
               aria-label="Always visible"
               defaultValue={normalizedProgress}
               getAriaValueText={getValueText}
@@ -69,11 +88,11 @@ const LibraryEntryCard = ({
               value={normalizedProgress}
               onChange={(_, value) => onProgressChange(value)}
             />
-          </div>
-        </div>
+          </ReadingProgress>
+        </Info>
       </Content>
       <Actions>
-        <LibraryEntryCardMore onRemove={onRemove} onMarkAsRead={onMarkAsRead} />
+        <MoreAction onRemove={onRemove} onMarkAsRead={onMarkAsRead} />
       </Actions>
     </Root>
   );

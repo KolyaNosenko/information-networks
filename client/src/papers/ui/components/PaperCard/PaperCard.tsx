@@ -1,11 +1,16 @@
 import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Typography,
-} from '@mui/material';
-
+  Author,
+  AuthorLabel,
+  AuthorWrapper,
+  Caption,
+  CaptionWrapper,
+  Content,
+  Header,
+  HeartButton,
+  HeartOutlined,
+  Name,
+  Root,
+} from './styled.tsx';
 import { Paper } from '../../../entities';
 
 export type PaperCardProps = {
@@ -21,23 +26,23 @@ const PaperCard = ({
   onAddToLibrary,
 }: PaperCardProps) => {
   return (
-    <Card className={className} variant="outlined">
-      <CardContent>
-        <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-          {name}
-        </Typography>
-        <Typography variant="h5" component="div">
-          Text
-        </Typography>
-        <img src={coverUrl} width={80} height={120} alt={name} />
-        <Typography variant="body2">{author}</Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" onClick={onAddToLibrary}>
-          Add to library
-        </Button>
-      </CardActions>
-    </Card>
+    <Root className={className} variant="outlined">
+      <Header>
+        <HeartButton onClick={onAddToLibrary}>
+          <HeartOutlined />
+        </HeartButton>
+      </Header>
+      <Content>
+        <CaptionWrapper>
+          <Caption src={coverUrl} width={120} height={160} alt={name} />
+        </CaptionWrapper>
+        <Name variant="h6">{name}</Name>
+        <AuthorWrapper>
+          <AuthorLabel>Author:</AuthorLabel>
+          <Author variant="body2">{author}</Author>
+        </AuthorWrapper>
+      </Content>
+    </Root>
   );
 };
 

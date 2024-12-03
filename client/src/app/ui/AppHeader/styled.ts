@@ -6,16 +6,22 @@ import { Avatar } from '@mui/material';
 import LibrarySvg from '../../../assets/library.svg?react';
 
 export const Header = styled.header`
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  //  TODO move to palette
-  color: #fff;
   background-color: ${({ theme }) => {
     // TODO change
     // @ts-ignore
     return theme.palette.primary.main;
   }};
+`;
+
+export const Content = styled.div`
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  //  TODO move to palette
+  color: #fff;
 `;
 
 export const Nav = styled.nav`

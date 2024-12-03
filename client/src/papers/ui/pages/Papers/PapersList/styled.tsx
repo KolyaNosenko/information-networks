@@ -21,6 +21,8 @@ export const ListItem = styled.li`
   padding-bottom: 20px;
 `;
 
-export const Card = styled(PaperCard)``;
+export const Card = styled(PaperCard)`
+  height: 100%;
+`;
 
 export const CardLoader = styled(PaperCardLoader)``;

@@ -1,5 +1,4 @@
-import PapersList from './PapersList';
-import { Body, Root, Toolbar } from './styled.tsx';
+import { Body, List, Root, Toolbar } from './styled.tsx';
 import { useCategories } from '../../../../categories/hooks';
 import { LoadingStatuses } from '../../../../common/entities';
 import { useAddToLibrary } from '../../../../library/hooks';
@@ -16,7 +15,7 @@ const Papers = () => {
     <Root>
       <Toolbar categories={categories} />
       <Body>
-        <PapersList
+        <List
           papers={papers}
           isLoaded={isLoaded}
           onAddToLibrary={addToLibrary}

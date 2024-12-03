@@ -7,11 +7,13 @@ import MoreIcon from '../../../../../assets/more.svg?react';
 import RemoveIcon from '../../../../../assets/remove.svg?react';
 
 export type LibraryEntryCardMoreProps = {
+  className?: string;
   onMarkAsRead: () => void;
   onRemove: () => void;
 };
 
 export const LibraryEntryCardMore = ({
+  className,
   onRemove,
   onMarkAsRead,
 }: LibraryEntryCardMoreProps) => {
@@ -37,7 +39,7 @@ export const LibraryEntryCardMore = ({
   };
 
   return (
-    <div>
+    <div className={className}>
       <IconButton
         aria-label="more"
         aria-controls={open ? 'long-menu' : undefined}
@@ -45,7 +47,7 @@ export const LibraryEntryCardMore = ({
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <MoreIcon width={24} height={24} />
+        <MoreIcon width={28} height={28} />
       </IconButton>
       <Menu
         MenuListProps={{

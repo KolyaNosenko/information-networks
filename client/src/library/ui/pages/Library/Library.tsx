@@ -1,5 +1,4 @@
-import LibraryEntryList from './LibraryEntryList';
-import { Root } from './styled.tsx';
+import { EntryList, Root, Title } from './styled.tsx';
 import {
   useLibrary,
   useRemoveFromLibrary,
@@ -25,7 +24,8 @@ export const Library = () => {
 
   return (
     <Root>
-      <LibraryEntryList
+      <Title variant="h1">Your library</Title>
+      <EntryList
         onRemove={onRemove}
         onUpdateProgress={onUpdateProgress}
         onMarkAsRead={onMarkAsRead}
