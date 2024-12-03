@@ -8,7 +8,11 @@ import {
   CreateEventView,
   CreateEventSuccessView,
 } from '../ui/views';
-import { AddPaperHandler, UpdatePaperHandler } from '../operation';
+import {
+  AddPaperHandler,
+  GetPapersHandler,
+  UpdatePaperHandler,
+} from '../operation';
 
 @Module({
   controllers: [PapersController, PapersAdminController],
@@ -22,6 +26,13 @@ import { AddPaperHandler, UpdatePaperHandler } from '../operation';
       inject: [PrismaPapersStorage],
       useFactory: (papersStorage: PapersStorage) => {
         return new PapersService(papersStorage);
+      },
+    },
+    {
+      provide: GetPapersHandler,
+      inject: [PapersService],
+      useFactory: (paperService: PapersService) => {
+        return new GetPapersHandler(paperService);
       },
     },
     {

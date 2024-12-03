@@ -1,42 +1,26 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Get } from '@nestjs/common';
 import { PapersService } from '../services';
-import { AddPaperDto } from './dto';
-import { AddPaperDtoMapper } from './dto-mappers';
+import { PaperDtoMapper } from './dto-mappers';
 import { EventsView, CreateEventView, CreateEventSuccessView } from './views';
+import { GetPapersHandler } from '../operation';
+import { SuccessResponse } from '../../common/ui/entities';
 
-@Controller('papers')
+@Controller('api/v1/papers')
 export class PapersController {
   constructor(
     private readonly papersService: PapersService,
     private readonly eventsView: EventsView,
     private readonly createEventView: CreateEventView,
     private readonly createEventSuccessView: CreateEventSuccessView,
+    private readonly getPapersHandler: GetPapersHandler,
   ) {}
 
   @Get()
-  async getPapersPage(@Res() response: Response) {
-    const events = await this.papersService.getPapers();
+  async getPapers() {
+    const dtoMapper = new PaperDtoMapper();
 
-    return this.eventsView.render(response, { events });
-  }
+    const papers = await this.getPapersHandler.handle();
 
-  @Get('create')
-  async getCreatePaperPage(@Res() response: Response) {
-    return this.createEventView.render(response);
-  }
-
-  @Get('create/success')
-  async getCreatPaperSuccessPage(@Res() response: Response) {
-    return this.createEventSuccessView.render(response);
-  }
-
-  @Post('create')
-  async addPaper(@Body() dto: AddPaperDto, @Res() response: Response) {
-    const dtoMapper = new AddPaperDtoMapper();
-
-    await this.papersService.addPaper(dtoMapper.toEntity(dto));
-
-    return response.redirect('create/success');
+    return new SuccessResponse(papers.map(dtoMapper.toDto));
   }
 }
