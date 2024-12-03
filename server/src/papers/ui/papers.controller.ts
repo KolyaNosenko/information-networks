@@ -4,6 +4,7 @@ import { PaperDtoMapper } from './dto-mappers';
 import { PapersView, AddPaperView, AddPaperSuccessView } from './views';
 import { GetPapersHandler } from '../operation';
 import { SuccessResponse } from '../../common/ui/entities';
+import { Public } from 'src/auth/infrastructure';
 
 @Controller('api/v1/papers')
 export class PapersController {
@@ -15,6 +16,7 @@ export class PapersController {
     private readonly getPapersHandler: GetPapersHandler,
   ) {}
 
+  @Public()
   @Get()
   async getPapers() {
     const dtoMapper = new PaperDtoMapper();
