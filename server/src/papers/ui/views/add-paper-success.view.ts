@@ -4,6 +4,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AddPaperSuccessView extends BaseView {
   getViewName(): string {
-    return 'add_paper_success';
+    return 'papers/add_paper_success';
   }
 }

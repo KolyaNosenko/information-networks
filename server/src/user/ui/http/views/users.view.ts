@@ -4,6 +4,6 @@ import { BaseView } from '../../../../common/ui/views';
 @Injectable()
 export class UsersView extends BaseView {
   getViewName(): string {
-    return 'users';
+    return 'users/users';
   }
 }

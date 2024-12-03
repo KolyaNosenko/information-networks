@@ -13,20 +13,19 @@
     <section class="py-5">
       <div class="container">
         <ul class="row">
-          {{#each viewData.papers }}
-            <li class="col-12">
-              <table class="table table-striped table-bordered">
-                <thead class="table-dark">
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Cover</th>
-                  <th scope="col">Author</th>
-                  <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- Example Row -->
+          <li class="col-12">
+            <table class="table table-striped table-bordered">
+              <thead class="table-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Cover</th>
+                <th scope="col">Author</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              {{#each viewData.papers }}
                 <tr>
                   <td>{{this.getId}}</td>
                   <td>{{this.getName}}</td>
@@ -36,11 +35,10 @@
                     <a href="/admin/papers/edit/{{this.getId}}" class="btn btn-sm btn-secondary">Edit</a>
                   </td>
                 </tr>
-                <!-- Repeat for other papers -->
-                </tbody>
-              </table>
-            </li>
-          {{/each}}
+              {{/each}}
+              </tbody>
+            </table>
+          </li>
         </ul>
       </div>
     </section>

@@ -11,7 +11,7 @@ export class PrismaLibraryStorage implements LibraryStorage {
   async getUserLibrary(userId: string): Promise<LibraryEntry[]> {
     const dbMapper = new LibraryEntryDbMapper();
 
-    const libraryEntries = await this.db.userLibrary.findMany({
+    const libraryEntries = await this.db.library.findMany({
       where: { userId: userId },
       include: { paper: true },
     });
@@ -22,7 +22,7 @@ export class PrismaLibraryStorage implements LibraryStorage {
   async getLibraryEntryById(entryId: string): Promise<LibraryEntry | null> {
     const dbMapper = new LibraryEntryDbMapper();
 
-    const libraryEntryFromDb = await this.db.userLibrary.findUnique({
+    const libraryEntryFromDb = await this.db.library.findUnique({
       where: { id: entryId },
       include: { paper: true },
     });
@@ -33,7 +33,7 @@ export class PrismaLibraryStorage implements LibraryStorage {
   async addLibraryEntry(libraryEntry: LibraryEntry): Promise<LibraryEntry> {
     const dbMapper = new LibraryEntryDbMapper();
 
-    const libraryEntryFromDb = await this.db.userLibrary.create({
+    const libraryEntryFromDb = await this.db.library.create({
       data: {
         id: libraryEntry.getId(),
         userId: libraryEntry.getUserId(),
@@ -52,7 +52,7 @@ export class PrismaLibraryStorage implements LibraryStorage {
   async updateLibraryEntry(libraryEntry: LibraryEntry): Promise<LibraryEntry> {
     const dbMapper = new LibraryEntryDbMapper();
 
-    const libraryEntryFromDb = await this.db.userLibrary.update({
+    const libraryEntryFromDb = await this.db.library.update({
       where: { id: libraryEntry.getId() },
       data: {
         isRead: libraryEntry.getIsRead(),
@@ -66,7 +66,7 @@ export class PrismaLibraryStorage implements LibraryStorage {
   }
 
   async removeLibraryEntry(entryId: string): Promise<void> {
-    await this.db.userLibrary.delete({
+    await this.db.library.delete({
       where: { id: entryId },
     });
   }

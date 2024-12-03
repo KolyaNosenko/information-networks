@@ -1,0 +1,47 @@
+{{#> app}}
+  {{#*inline "content"}}
+    {{#> header}}{{/header}}
+    <div class="container">
+      <div class="row">
+        <div class="col px-3 py-4">
+          <div class="d-flex justify-content-end">
+            <a href="/admin/categories/add" class="btn btn-primary">Add</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="py-5">
+      <div class="container">
+        <ul class="row">
+          <li class="col-12">
+            <table class="table table-striped table-bordered">
+              <thead class="table-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Updated At</th>
+                <th scope="col">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              {{#each viewData.categories }}
+                <tr>
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                  <td>{{this.created_at}}</td>
+                  <td>{{this.updated_at}}</td>
+                  <td>
+                    <a href="/admin/categories/edit/{{this.id}}" class="btn btn-sm btn-secondary">Edit</a>
+                  </td>
+                </tr>
+              {{/each}}
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </div>
+    </section>
+    {{#> footer}}{{/footer}}
+  {{/inline}}
+{{/app}}

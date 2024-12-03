@@ -1,14 +1,15 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AppAdminController } from '../ui';
-import { HealthModule } from '../../health/module';
-import { ConfigModule } from '../../common/config/module';
-import { PapersModule } from '../../papers/module';
-import { DatabaseModule } from '../../common/database/module';
-import { UserModule } from '../../user/module';
+import { HealthModule } from 'src/health/module';
+import { ConfigModule } from 'src/common/config/module';
+import { PapersModule } from 'src/papers/module';
+import { DatabaseModule } from 'src/common/database/module';
+import { UserModule } from 'src/user/module';
 import { AppGuard } from '../infrastructure';
-import { AuthModule } from '../../auth/module';
-import { LibraryModule } from '../../library/module';
+import { AuthModule } from 'src/auth/module';
+import { LibraryModule } from 'src/library/module';
+import { CategoriesModule } from 'src/categories/module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { LibraryModule } from '../../library/module';
     UserModule,
     PapersModule,
     LibraryModule,
+    CategoriesModule,
   ],
   providers: [
     {
