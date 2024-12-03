@@ -6,12 +6,13 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build",
+    "cp:new-relic": "cp ./newrelic.js ./dist/newrelic.js",
+    "build": "nest build && npm run cp:new-relic",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node -r newrelic dist/main",
     "prisma:db:seed": "prisma db seed",
     "prisma:generate": "prisma generate",
     "prisma:migrate:dev": "prisma migrate dev",
@@ -37,6 +38,7 @@
     "hbs": "^4.2.0",
     "hbs-utils": "^0.0.4",
     "lodash": "^4.17.21",
+    "newrelic": "^12.8.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "uuid": "^11.0.3"
