@@ -15,6 +15,7 @@ import { PaperService } from '../../../papers/services';
 import { config, Services } from '../../context';
 import { AppStore, createStore } from '../../store';
 import Main from '../Main';
+import { CategoriesService } from '../../../categories/services';
 
 const initServices = (): Services => {
   const httpClient = HttpClientWithSessionRefresh.getInstance(
@@ -24,11 +25,13 @@ const initServices = (): Services => {
   const persistentStorage = new PersistentStorage();
 
   const authService = new AuthService(httpClient, persistentStorage);
+  const categoriesService = new CategoriesService(httpClient);
   const paperService = new PaperService(httpClient);
   const libraryService = new LibraryService(httpClient);
 
   return {
     authService,
+    categoriesService,
     paperService,
     libraryService,
   };

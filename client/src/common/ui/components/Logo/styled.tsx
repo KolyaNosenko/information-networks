@@ -1,8 +1,10 @@
+import { Link } from 'react-router';
+
 import styled from '@emotion/styled';
 
 import PaperBall from '../../../../assets/paper-ball.svg?react';
 
-export const Root = styled.div`
+export const Root = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;

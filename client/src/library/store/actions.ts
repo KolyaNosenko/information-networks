@@ -38,7 +38,19 @@ export const updateLibraryEntry = createAsyncThunk<
     const { libraryService } = extra.services;
 
     try {
-      return libraryService.updateLibraryEntry(params);
+      if (params.isRead || params.progress === 1) {
+        return libraryService.updateLibraryEntry({
+          entryId: params.entryId,
+          isRead: true,
+          progress: 1,
+        });
+      }
+
+      return libraryService.updateLibraryEntry({
+        entryId: params.entryId,
+        progress: params.progress,
+        isRead: false,
+      });
     } catch (err) {
       return rejectWithValue(err);
     }

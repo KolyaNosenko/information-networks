@@ -1,4 +1,4 @@
-import { Chip, InputAdornment } from '@mui/material';
+import { InputAdornment } from '@mui/material';
 
 import {
   Root,
@@ -10,22 +10,26 @@ import {
   CategoriesListItem,
   Category,
 } from './styled.tsx';
+import { Category as CategoryType } from '../../../../../categories/entities';
 
 export type PapersToolbarProps = {
   className?: string;
+  categories: Array<CategoryType>;
 };
 
-const PapersToolbar = ({ className }: PapersToolbarProps) => {
+const PapersToolbar = ({ categories, className }: PapersToolbarProps) => {
   return (
     <Root className={className}>
       <Categories>
         <CategoriesList>
-          <CategoriesListItem>
-            <Category
-              label="Software Engeneering"
-              onClick={() => console.log('Hii')}
-            />
-          </CategoriesListItem>
+          {categories.map((category) => (
+            <CategoriesListItem key={category.id}>
+              <Category
+                label={category.name}
+                onClick={() => console.log('Hii')}
+              />
+            </CategoriesListItem>
+          ))}
         </CategoriesList>
       </Categories>
       <SearchWrapper>

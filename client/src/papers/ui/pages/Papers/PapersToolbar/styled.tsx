@@ -12,6 +12,7 @@ export const Root = styled.div`
 export const SearchWrapper = styled.div`
   flex-shrink: 0;
   margin-left: auto;
+  margin-bottom: auto;
 `;
 
 export const Search = styled(TextField)``;
@@ -24,8 +25,17 @@ export const SearchIcon = styled(Icon)`
 
 export const Categories = styled.div``;
 
-export const CategoriesList = styled.ul``;
+export const CategoriesList = styled.ul`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-bottom: -10px;
+`;
 
-export const CategoriesListItem = styled.li``;
+export const CategoriesListItem = styled.li`
+  padding-right: 15px;
+  padding-bottom: 10px;
+`;
 
 export const Category = styled(Chip)``;

@@ -6,7 +6,7 @@ export type LogoProps = {
 
 const Logo = ({ className }: LogoProps) => {
   return (
-    <Root className={className}>
+    <Root to="/" className={className}>
       <Icon />
       <Text>CS Papers</Text>
     </Root>

@@ -5,7 +5,7 @@ export type Config = {
 };
 
 export const config: Config = {
-  apiUrl: 'http://localhost:3003',
+  apiUrl: import.meta.env.VITE_API_URL,
 };
 
 export type ConfigProviderProps = {
