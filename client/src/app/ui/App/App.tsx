@@ -14,7 +14,7 @@ import { LibraryService } from '../../../library/services';
 import { PaperService } from '../../../papers/services';
 import { config, Services } from '../../context';
 import { AppStore, createStore } from '../../store';
-import AppRoutes from '../AppRoutes';
+import Main from '../Main';
 
 const initServices = (): Services => {
   const httpClient = HttpClientWithSessionRefresh.getInstance(
@@ -41,7 +41,7 @@ function App() {
   return (
     <AppContainer services={services} store={store}>
       <AppLayout>
-        <AppRoutes />
+        <Main />
       </AppLayout>
     </AppContainer>
   );
