@@ -1,5 +1,6 @@
 import {
   Content,
+  EnterIcon,
   Header,
   LibraryIcon,
   Nav,
@@ -7,7 +8,7 @@ import {
   NavList,
   NavListItem,
 } from './styled';
-import { IsAuthorized } from '../../../auth/ui/components';
+import { IsAuthorized, IsNotAuthorized } from '../../../auth/ui/components';
 import { Logo } from '../../../common/ui/components';
 
 const AppHeader = () => {
@@ -15,17 +16,22 @@ const AppHeader = () => {
     <Header>
       <Content>
         <Logo />
-        <IsAuthorized>
-          <Nav>
-            <NavList>
-              <NavListItem>
+        <Nav>
+          <NavList>
+            <NavListItem>
+              <IsAuthorized>
                 <NavLink to="/library">
                   <LibraryIcon />
                 </NavLink>
-              </NavListItem>
-            </NavList>
-          </Nav>
-        </IsAuthorized>
+              </IsAuthorized>
+              <IsNotAuthorized>
+                <NavLink to="/login">
+                  <EnterIcon />
+                </NavLink>
+              </IsNotAuthorized>
+            </NavListItem>
+          </NavList>
+        </Nav>
       </Content>
     </Header>
   );

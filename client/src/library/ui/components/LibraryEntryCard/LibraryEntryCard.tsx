@@ -1,7 +1,5 @@
 import { useCallback, useMemo } from 'react';
 
-import { Slider, Typography } from '@mui/material';
-
 import {
   Actions,
   Author,

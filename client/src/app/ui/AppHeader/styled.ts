@@ -1,8 +1,8 @@
 import { Link } from 'react-router';
 
 import styled from '@emotion/styled';
-import { Avatar } from '@mui/material';
 
+import EnterSvg from '../../../assets/enter.svg?react';
 import LibrarySvg from '../../../assets/library.svg?react';
 
 export const Header = styled.header`
@@ -45,9 +45,12 @@ export const NavLink = styled(Link)``;
 
 export const LibraryIcon = styled(LibrarySvg)`
   fill: #ffffff;
+  width: 24px;
+  height: 24px;
 `;
 
-export const UserAvatar = styled(Avatar)`
-  flex-shrink: 0;
-  margin-left: 10px;
+export const EnterIcon = styled(EnterSvg)`
+  fill: #ffffff;
+  width: 24px;
+  height: 24px;
 `;
