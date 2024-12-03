@@ -1,21 +1,27 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Res } from '@nestjs/common';
 import { Roles } from '../../infrastructure';
 import { UserRoleName } from '../../domain';
 import { GetUsersHandler } from '../../operation';
 import { UserDtoMapper } from './dto-mappers';
-import { SuccessResponse } from '../../../common/ui/entities';
+import { Response } from 'express';
+import { UsersView } from './views';
 
 @Roles([UserRoleName.ADMIN])
-@Controller('api/v1/admin/users')
+@Controller('admin/users')
 export class UserAdminController {
-  constructor(private readonly getUsersHandler: GetUsersHandler) {}
+  constructor(
+    private readonly getUsersHandler: GetUsersHandler,
+    private readonly usersView: UsersView,
+  ) {}
 
   @Get()
-  async getUsers() {
+  async getUsersPage(@Res() response: Response) {
     const dtoMapper = new UserDtoMapper();
 
     const users = await this.getUsersHandler.handle();
 
-    return new SuccessResponse(users.map(dtoMapper.toDto));
+    return this.usersView.render(response, {
+      users: users.map(dtoMapper.toDto.bind(dtoMapper)),
+    });
   }
 }

@@ -1,0 +1,25 @@
+{{#> app}}
+  {{#*inline "content"}}
+    <section class="py-5">
+      <div class="container">
+        <form style="max-width: 600px" class="card row gy-2 gx-3 align-items-center mx-auto pt-3" method="POST"
+              action="/admin/auth/login">
+          <h2 class="mb-5 text-center">Login</h2>
+          <div class="p-5 card-body">
+            <div class="col-12 mb-1">
+              <label for="email" class="col-form-label">Email</label>
+              <input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            <div class="col-12 mb-4">
+              <label for="password" class="col-form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+            </div>
+          </div>
+          <div class="col-12 px-5 py-3 card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  {{/inline}}
+{{/app}}

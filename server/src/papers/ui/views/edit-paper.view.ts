@@ -2,8 +2,8 @@ import { BaseView } from '../../../common/ui/views';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class EventsView extends BaseView {
+export class EditPaperView extends BaseView {
   getViewName(): string {
-    return 'home';
+    return 'edit_paper';
   }
 }

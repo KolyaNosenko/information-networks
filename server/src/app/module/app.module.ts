@@ -1,6 +1,6 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
-import { AppController } from '../ui';
+import { AppAdminController } from '../ui';
 import { HealthModule } from '../../health/module';
 import { ConfigModule } from '../../common/config/module';
 import { PapersModule } from '../../papers/module';
@@ -34,6 +34,6 @@ import { LibraryModule } from '../../library/module';
         }),
     },
   ],
-  controllers: [AppController],
+  controllers: [AppAdminController],
 })
 export class AppModule {}

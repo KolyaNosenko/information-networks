@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { PapersService } from '../services';
 import { PaperDtoMapper } from './dto-mappers';
-import { EventsView, CreateEventView, CreateEventSuccessView } from './views';
+import { PapersView, AddPaperView, AddPaperSuccessView } from './views';
 import { GetPapersHandler } from '../operation';
 import { SuccessResponse } from '../../common/ui/entities';
 
@@ -9,9 +9,9 @@ import { SuccessResponse } from '../../common/ui/entities';
 export class PapersController {
   constructor(
     private readonly papersService: PapersService,
-    private readonly eventsView: EventsView,
-    private readonly createEventView: CreateEventView,
-    private readonly createEventSuccessView: CreateEventSuccessView,
+    private readonly eventsView: PapersView,
+    private readonly createEventView: AddPaperView,
+    private readonly createEventSuccessView: AddPaperSuccessView,
     private readonly getPapersHandler: GetPapersHandler,
   ) {}
 

@@ -29,6 +29,10 @@ async function bootstrap() {
     join(__dirname, '..', 'views/components'),
   );
 
+  handlebars.registerHelper('timestampToDateString', (date: number) => {
+    return new Date(date).toDateString();
+  });
+
   app.use(cookieParser());
 
   app.enableCors({

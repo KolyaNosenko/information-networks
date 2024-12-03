@@ -6,7 +6,7 @@ import {
   AuthSessionStorage,
 } from '../services';
 import { LoginHandler, LogoutHandler, SignUpHandler } from '../operation';
-import { AuthController } from '../ui';
+import { AuthController, AuthAdminController, LoginView } from '../ui';
 import {
   PrismaAccountStorage,
   AuthorizedGuard,
@@ -19,8 +19,9 @@ import { ConfigService } from '../../common/config/services';
 
 @Module({
   imports: [UserModule],
-  controllers: [AuthController],
+  controllers: [AuthController, AuthAdminController],
   providers: [
+    LoginView,
     PrismaAccountStorage,
     PrismaAuthSessionStorage,
     {

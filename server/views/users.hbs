@@ -1,0 +1,43 @@
+{{#> app}}
+  {{#*inline "content"}}
+    {{#> header}}{{/header}}
+    <section class="py-5">
+      <div class="container">
+        <ul class="row">
+          {{#each viewData.users }}
+            <li class="col-12">
+              <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Roles</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col">Updated At</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- User Row -->
+                <tr>
+                  <td>{{this.id}}</td>
+                  <td>{{this.name}}</td>
+                  <td>
+                    <ul class="list-unstyled mb-0">
+                      {{#each this.roles}}
+                        <li>{{this.name}}</li>
+                      {{/each}}
+                    </ul>
+                  </td>
+                  <td>{{timestampToDateString this.created_at}}</td>
+                  <td>{{timestampToDateString this.updated_at}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </section>
+    {{#> footer}}{{/footer}}
+  {{/inline}}
+{{/app}}

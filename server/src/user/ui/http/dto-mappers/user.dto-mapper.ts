@@ -11,7 +11,9 @@ export class UserDtoMapper implements ToDto<User, UserDto> {
       id: entity.getId(),
       account_id: entity.getAccountId(),
       name: entity.getName(),
-      roles: userRoleDtoMapper.toDto.call(this, entity.getRoles()),
+      roles: entity
+        .getRoles()
+        .map(userRoleDtoMapper.toDto.bind(userRoleDtoMapper)),
       created_at: entity.getCreateAt().getTime(),
       updated_at: entity.getUpdateAt().getTime(),
     };

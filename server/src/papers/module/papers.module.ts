@@ -4,12 +4,15 @@ import { PapersAdminController, PapersController } from '../ui';
 import { PrismaPapersStorage } from '../infrastructure';
 import { PapersStorage } from '../services/interfaces';
 import {
-  EventsView,
-  CreateEventView,
-  CreateEventSuccessView,
+  PapersView,
+  AddPaperView,
+  AddPaperSuccessView,
+  EditPaperSuccessView,
+  EditPaperView,
 } from '../ui/views';
 import {
   AddPaperHandler,
+  GetPaperHandler,
   GetPapersHandler,
   UpdatePaperHandler,
 } from '../operation';
@@ -18,9 +21,11 @@ import {
   controllers: [PapersController, PapersAdminController],
   providers: [
     PrismaPapersStorage,
-    EventsView,
-    CreateEventView,
-    CreateEventSuccessView,
+    PapersView,
+    EditPaperView,
+    EditPaperSuccessView,
+    AddPaperView,
+    AddPaperSuccessView,
     {
       provide: PapersService,
       inject: [PrismaPapersStorage],
@@ -33,6 +38,13 @@ import {
       inject: [PapersService],
       useFactory: (paperService: PapersService) => {
         return new GetPapersHandler(paperService);
+      },
+    },
+    {
+      provide: GetPaperHandler,
+      inject: [PapersService],
+      useFactory: (paperService: PapersService) => {
+        return new GetPaperHandler(paperService);
       },
     },
     {
